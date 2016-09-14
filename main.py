@@ -3,6 +3,25 @@ class ContactList(list):
     def __init__(self, *args):
         super().__init__(self, *args)
 
+    def search(self, name):
+        matches = []
+        for contact in self:
+            if name in contact.name:
+                matches.append(contact)
+        return matches
+
+    def longest_name(self):
+        longest = ''
+        for contact in self:
+            if len(contact.name) > len(longest):
+                longest = contact.name
+        if longest == '':
+            return None
+        else:
+            return longest
+
+        #print(max([contact.name for contact in self], key=len))
+
 
 class Contact():
 
@@ -15,7 +34,7 @@ class Contact():
 
     @classmethod
     def reset_contacts(cls):
-        cls.all_contacts = []
+        cls.all_contacts = ContactList()
 
 
 class Supplier(Contact):
@@ -33,9 +52,9 @@ class Supplier(Contact):
 
 
 
-"""instance = Contact('bela', 'bela@gmail.com')
+instance = Contact('belacska gabor', 'bela@gmail.com')
 instance2 = Contact('kata', 'kata@gmail.com')
-print(Contact.all_contacts)
+"""print(Contact.all_contacts)
 Contact.reset_contacts()
 print(Contact.all_contacts)
 instance = Contact('bela', 'bela@gmail.com')
@@ -44,3 +63,5 @@ print(Contact.all_contacts[1].name)
 instance2.order('kutya')
 instance2.order('macska')
 print(Supplier.all_orders)"""
+
+Contact.all_contacts.longest_name()
