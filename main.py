@@ -34,7 +34,7 @@ class Contact():
 
     @classmethod
     def reset_contacts(cls):
-        cls.all_contacts = ContactList()
+        cls.all_contacts.clear()
 
 
 class Supplier(Contact):
