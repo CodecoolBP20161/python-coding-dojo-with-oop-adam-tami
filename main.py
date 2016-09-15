@@ -11,16 +11,18 @@ class ContactList(list):
         return matches
 
     def longest_name(self):
-        longest = ''
-        for contact in self:
-            if len(contact.name) > len(longest):
-                longest = contact.name
-        if longest == '':
+        # longest = ''
+        # for contact in self:
+        #     if len(contact.name) > len(longest):
+        #         longest = contact.name
+        # if longest == '':
+        #     return None
+        # else:
+        #     return longest
+        try:
+            return max([contact.name for contact in self], key=len)
+        except ValueError:
             return None
-        else:
-            return longest
-
-        #print(max([contact.name for contact in self], key=len))
 
 
 class Contact():
@@ -52,9 +54,9 @@ class Supplier(Contact):
 
 
 
-instance = Contact('belacska gabor', 'bela@gmail.com')
+"""instance = Contact('belacska gabor', 'bela@gmail.com')
 instance2 = Contact('kata', 'kata@gmail.com')
-"""print(Contact.all_contacts)
+print(Contact.all_contacts)
 Contact.reset_contacts()
 print(Contact.all_contacts)
 instance = Contact('bela', 'bela@gmail.com')
@@ -63,5 +65,3 @@ print(Contact.all_contacts[1].name)
 instance2.order('kutya')
 instance2.order('macska')
 print(Supplier.all_orders)"""
-
-Contact.all_contacts.longest_name()
